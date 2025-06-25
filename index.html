@@ -3,79 +3,178 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Secret</title>
+  <title>Lời nhắn gửi 2k7</title>
   <style>
     body {
-      margin: 0; padding: 0;
-      background-image: url("https://i.postimg.cc/nzFW3pr7/01.jpg");
+      margin: 0;
+      padding: 0;
+      background-image: url("https://i.postimg.cc/yNjp02Zx/bg-cute-pastel.jpg");
       background-size: cover;
       background-position: center;
       font-family: 'Segoe UI', sans-serif;
-      color: #fff;
-      text-shadow: 1px 1px 3px #333;
+      color: #333;
       overflow: hidden;
     }
     .overlay {
       position: fixed; inset: 0;
-      background-color: rgba(0,0,0,0.2);
+      background-color: rgba(255, 255, 255, 0.4);
       pointer-events: none;
+      z-index: 1;
     }
     .container {
       text-align: center;
       padding: 60px 20px;
       max-width: 800px;
       margin: auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
     }
     h1 {
-      font-size: 2.6rem;
+      font-size: 2.5rem;
+      color: #2a7b5f;
       margin-bottom: 20px;
-      animation: fadeIn 1.5s ease-in-out;
     }
-    p {
-      font-size: 1.3rem;
+    p.typing {
+      font-size: 1.2rem;
       line-height: 1.8;
-      margin: 10px 0;
-      animation: fadeIn 2s ease-in-out;
+      white-space: pre-line;
+      text-align: center;
+      min-height: 200px;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .hidden { display: none; }
+    .start-screen {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .start-screen input {
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+    .start-screen button {
+      background-color: #ffa4c6;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+    .start-screen button:hover {
+      background-color: #f86ba3;
+    }
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
     }
     .heart {
       position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
+      background-size: contain;
       animation: fall 6s linear infinite;
-      will-change: transform;
+      z-index: 0;
     }
     @keyframes fall {
-      from { top: -50px; opacity: 1; transform: translateX(0); }
-      to { top: 100vh; opacity: 0; transform: translateX(60px); }
+      0% { top: -50px; opacity: 1; transform: translateX(0); }
+      100% { top: 100vh; opacity: 0; transform: translateX(60px); }
     }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
-  <div class="container">
-    <h1>💚 Gửi tới các anh chị 2007 💚</h1>
-    <p>Ngày thi đang đến gần rồi – khoảnh khắc quan trọng đánh dấu sự trưởng thành<br>sau bao ngày miệt mài học tập của anh chị.</p>
-    <p>📘 Mong rằng những cố gắng không ngừng nghỉ suốt thời gian qua<br>sẽ được đền đáp bằng kết quả thật xứng đáng.</p>
-    <p>Dù kỳ thi có áp lực đến đâu, hãy nhớ:<br><strong>“Cố gắng hết sức mình là đã thành công một nửa rồi!”</strong> 💪</p>
-    <p>Chúc anh chị thật nhiều năng lượng tích cực,<br>tinh thần vững vàng và tự tin trong kỳ thi quan trọng sắp tới!<br><strong>Bình tĩnh – Tự tin – Chiến thắng!</strong> 🌟</p>
+
+  <div class="start-screen" id="startScreen">
+    <h1>🌸 Xin chào bạn dễ thương 🌸</h1>
+    <p>Nhấn nút "BẮT ĐẦU" và nhập mật khẩu để mở lời chúc đặc biệt 💖</p>
+    <input type="password" id="password" placeholder="Nhập mật khẩu..." />
+    <button onclick="checkPassword()">BẮT ĐẦU</button>
   </div>
+
+  <div class="container hidden" id="mainContent">
+    <h1>💚 Gửi tới các anh/chị 2k7 💚</h1>
+    <p class="typing" id="typing"></p>
+  </div>
+
+  <script>
+    const correctPassword = "2007"; // Mật khẩu bạn muốn đặt
+
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === correctPassword) {
+        document.getElementById("startScreen").style.display = "none";
+        document.getElementById("mainContent").classList.remove("hidden");
+        typeWriter();
+        //nhạc
+        const audio = new Audio("https://raw.githubusercontent.com/kaswtr09/2007/main/nhac.mp3");
+        audio.loop = true;
+        audio.play();
+      } else {
+        alert("Sai mật khẩu rồi 😥. Thử lại nha!");
+      }
+    }
+  </script>
+
+  <script>
+    const text = `Ngày thi đang đến gần rồi – khoảnh khắc quan trọng đánh dấu sự trưởng thành sau bao ngày miệt mài học tập của anh chị.\n\n📘 Mong rằng những cố gắng không ngừng nghỉ suốt thời gian qua sẽ được đền đáp bằng kết quả thật xứng đáng.\n\nDù kỳ thi có áp lực đến đâu, hãy nhớ: “Cố gắng hết sức mình là đã thành công một nửa rồi!” 💪\n\nChúc anh chị thật nhiều năng lượng tích cực, tinh thần vững vàng và tự tin trong kỳ thi quan trọng sắp tới!\nBình tĩnh – Tự tin – Chiến thắng! 🌟`;
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 30);
+      }
+    }
+  </script>
+
   <script>
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.textContent = "❤️";
-      const size = Math.random() * 20 + 20;
-      heart.style.fontSize = size + "px";
       heart.style.left = Math.random() * 100 + "vw";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-    setInterval(createHeart, 300);
+    setInterval(createHeart, 400);
   </script>
+
+  <script>
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (Math.random() * 2 + 1) + "s";
+      document.body.appendChild(star);
+    }
+  </script>
+
   <audio autoplay loop>
-    <source src="https://raw.githubusercontent.com/kaswtr09/2007/main/Music.mp3" type="audio/mp3">
+    <source src="https://raw.githubusercontent.com/kaswtr09/2007/main/nhac.mp3" type="audio/mp3">
   </audio>
 </body>
 </html>
