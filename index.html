@@ -8,19 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/particle.js"></script>
-  <script src="js/universe.js"></script>
+  <script src="https://kaswtr09.github.io/2007/js/main.js"></script>
+  <script src="https://kaswtr09.github.io/2007/js/particle.js"></script>
+  <script src="https://kaswtr09.github.io/2007/js/universe.js"></script>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      background-image: url("https://i.postimg.cc/nzFW3pr7/01.jpg");
-      background-size: cover;
-      background-position: center;
+      height: 100%;
       font-family: 'Nunito', 'Montserrat', sans-serif;
       color: #333;
       overflow: hidden;
+    }
+    canvas#universe, canvas#heart {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
     .overlay {
       position: fixed; inset: 0;
@@ -30,15 +34,16 @@
     }
     .container {
       text-align: left;
-      padding: 60px 30px;
+      padding: 40px 30px;
       max-width: 800px;
-      margin: auto;
+      margin: 0 auto;
       background-color: transparent;
       border-radius: 20px;
       box-shadow: none;
       position: relative;
       z-index: 2;
       color: #2b4d3b;
+      top: 10vh;
     }
     h1 {
       font-size: 2.5rem;
@@ -119,6 +124,7 @@
 </head>
 <body>
   <canvas id="universe"></canvas>
+  <canvas id="heart"></canvas>
   <div class="overlay"></div>
 
   <div class="start-screen" id="startScreen">
