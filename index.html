@@ -105,7 +105,6 @@
       animation: fall 6s linear infinite;
       z-index: 5;
     }
-
     @keyframes fall {
       0% { top: -50px; opacity: 1; transform: translateX(0); }
       100% { top: 100vh; opacity: 0; transform: translateX(60px); }
@@ -142,6 +141,14 @@
         alert("Sai mật khẩu rồi 😥. Thử lại nha!");
       }
     }
+
+    // Thêm sự kiện nhấn Enter để bắt đầu
+    document.getElementById("password").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        checkPassword();
+      }
+    });
   </script>
 
   <script>
