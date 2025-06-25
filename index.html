@@ -27,11 +27,12 @@
       padding: 60px 30px;
       max-width: 800px;
       margin: auto;
-      background-color: rgba(255, 255, 255, 0.65);
+      background-color: transparent;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      box-shadow: none;
       position: relative;
       z-index: 2;
+      color: #2b4d3b;
     }
     h1 {
       font-size: 2.5rem;
@@ -49,7 +50,7 @@
     .start-screen {
       position: fixed;
       inset: 0;
-      background-color: rgba(255, 255, 255, 0.85);
+      background: url('https://i.postimg.cc/BnT0CRF0/02.jpg') center/cover no-repeat;
       z-index: 99;
       display: flex;
       flex-direction: column;
@@ -57,6 +58,8 @@
       align-items: center;
       text-align: center;
       font-family: 'Nunito', sans-serif;
+      color: #2a7b5f;
+      backdrop-filter: brightness(1.2);
     }
     .start-screen input {
       padding: 10px 15px;
