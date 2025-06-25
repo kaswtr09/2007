@@ -97,6 +97,7 @@
     }
     .heart {
       position: fixed;
+      top: 0;
       width: 20px;
       height: 20px;
       background: url('https://i.postimg.cc/BnT0CRF0/02.jpg') no-repeat center;
@@ -104,6 +105,7 @@
       animation: fall 6s linear infinite;
       z-index: 5;
     }
+
     @keyframes fall {
       0% { top: -50px; opacity: 1; transform: translateX(0); }
       100% { top: 100vh; opacity: 0; transform: translateX(60px); }
