@@ -16,12 +16,14 @@
       color: #333;
       overflow: hidden;
     }
+
     .overlay {
       position: fixed; inset: 0;
       background-color: rgba(255, 255, 255, 0.4);
       pointer-events: none;
       z-index: 1;
     }
+
     .container {
       text-align: left;
       padding: 60px 30px;
@@ -34,11 +36,13 @@
       z-index: 2;
       color: #2b4d3b;
     }
+
     h1 {
       font-size: 2.5rem;
       color: #2a7b5f;
       margin-bottom: 20px;
     }
+
     p.typing {
       font-size: 1.2rem;
       line-height: 1.8;
@@ -46,7 +50,9 @@
       text-align: left;
       min-height: 200px;
     }
+
     .hidden { display: none; }
+
     .start-screen {
       position: fixed;
       inset: 0;
@@ -60,7 +66,9 @@
       font-family: 'Nunito', sans-serif;
       color: #2a7b5f;
       backdrop-filter: brightness(1.2);
+      overflow: hidden;
     }
+
     .start-screen input {
       padding: 10px 15px;
       border-radius: 10px;
@@ -68,6 +76,7 @@
       font-size: 1rem;
       margin-top: 10px;
     }
+
     .start-screen button {
       background-color: #ffa4c6;
       border: none;
@@ -80,9 +89,11 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       transition: background 0.3s;
     }
+
     .start-screen button:hover {
       background-color: #f86ba3;
     }
+
     .star {
       position: absolute;
       width: 3px;
@@ -91,23 +102,33 @@
       border-radius: 50%;
       animation: twinkle 2s infinite;
     }
+
     @keyframes twinkle {
       0%, 100% { opacity: 0.2; }
       50% { opacity: 1; }
     }
+
     .heart {
-      position: fixed;
+      position: absolute;
       top: 0;
-      width: 20px;
-      height: 20px;
-      background: url('https://i.postimg.cc/BnT0CRF0/02.jpg') no-repeat center;
+      width: 24px;
+      height: 24px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
       background-size: contain;
       animation: fall 6s linear infinite;
-      z-index: 5;
+      z-index: 100;
+      pointer-events: none;
     }
+
     @keyframes fall {
-      0% { top: -50px; opacity: 1; transform: translateX(0); }
-      100% { top: 100vh; opacity: 0; transform: translateX(60px); }
+      0% {
+        transform: translateY(-50px) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(60px);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -115,8 +136,8 @@
   <div class="overlay"></div>
 
   <div class="start-screen" id="startScreen">
-    <h1>🌸 Chao xìnnnn 🌸</h1>
-    <p>💖💖💖💖💖</p>
+    <h1>💖 Hế luuuu các anh chị 💖</h1>
+	<h2>✨ Nhập mật khẩu để nhận bất ngờ nè ✨</h2>
     <input type="password" id="password" placeholder="Nhập mật khẩu..." />
     <button onclick="checkPassword()">BẮT ĐẦU</button>
   </div>
@@ -142,7 +163,7 @@
       }
     }
 
-    // Thêm sự kiện nhấn Enter để bắt đầu
+    // Nhấn Enter để đăng nhập
     document.getElementById("password").addEventListener("keypress", function(event) {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -152,7 +173,7 @@
   </script>
 
   <script>
-    const text = `Ngày thi đang đến gần rồi – khoảnh khắc quan trọng đánh dấu sự trưởng thành sau bao ngày miệt mài học tập.\n📘 Mong rằng những cố gắng, nỗ lực không ngừng nghỉ của các anh chị suốt thời gian qua sẽ được đền đáp bằng kết quả thật xứng đáng.\nChúc anh chị tinh thần vững vàng và tự tin trong kỳ thi quan trọng sắp tới!\nBình tĩnh – Tự tin – Chiến thắng! 🌟`;
+    const text = `ㅤㅤㅤNgày thi đang đến gần rồi – khoảnh khắc quan trọng đánh dấu sự trưởng thành sau bao ngày miệt mài học tập.\nㅤㅤㅤMong rằng những cố gắng, nỗ lực không ngừng nghỉ của các anh chị suốt thời gian qua sẽ được đền đáp bằng kết quả thật xứng đáng. 📘\nㅤㅤㅤChúc anh chị tinh thần vững vàng và tự tin trong kỳ thi quan trọng sắp tới! Bình tĩnh – Tự tin – Chiến thắng! 🌟`;
     let i = 0;
     function typeWriter() {
       if (i < text.length) {
@@ -168,10 +189,11 @@
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.style.left = Math.random() * 100 + "vw";
-      document.body.appendChild(heart);
+      heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
+      document.getElementById("startScreen").appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-    setInterval(createHeart, 400);
+    setInterval(createHeart, 300);
   </script>
 
   <script>
@@ -185,8 +207,6 @@
     }
   </script>
 
-  <audio autoplay loop>
-    
-  </audio>
+  <audio autoplay loop></audio>
 </body>
 </html>
