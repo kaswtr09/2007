@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Secret</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -11,7 +12,7 @@
       background-image: url("https://i.postimg.cc/nzFW3pr7/01.jpg");
       background-size: cover;
       background-position: center;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Nunito', sans-serif;
       color: #333;
       overflow: hidden;
     }
@@ -22,11 +23,11 @@
       z-index: 1;
     }
     .container {
-      text-align: center;
-      padding: 60px 20px;
+      text-align: left;
+      padding: 60px 30px;
       max-width: 800px;
       margin: auto;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.65);
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
       position: relative;
@@ -41,7 +42,7 @@
       font-size: 1.2rem;
       line-height: 1.8;
       white-space: pre-line;
-      text-align: center;
+      text-align: left;
       min-height: 200px;
     }
     .hidden { display: none; }
@@ -55,6 +56,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      font-family: 'Nunito', sans-serif;
     }
     .start-screen input {
       padding: 10px 15px;
@@ -94,7 +96,7 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
+      background: url('https://i.postimg.cc/BnT0CRF0/02.jpg') no-repeat center;
       background-size: contain;
       animation: fall 6s linear infinite;
       z-index: 0;
@@ -121,15 +123,13 @@
   </div>
 
   <script>
-    const correctPassword = "2007"; // Mật khẩu bạn muốn đặt
-
+    const correctPassword = "2007";
     function checkPassword() {
       const input = document.getElementById("password").value;
       if (input === correctPassword) {
         document.getElementById("startScreen").style.display = "none";
         document.getElementById("mainContent").classList.remove("hidden");
         typeWriter();
-        //nhạc
         const audio = new Audio("https://raw.githubusercontent.com/kaswtr09/2007/main/Music.mp3");
         audio.loop = true;
         audio.play();
